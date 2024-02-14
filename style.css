@@ -144,6 +144,10 @@ background-color: #f9faff;
     align-items: center;
 }
 
+.introCol1{
+    padding-right: .5rem;
+}
+
 
 .introSectionBody h1, .gallerySection h1{
     font-size: 3rem;
@@ -533,4 +537,3 @@ footer {
 }
 
 
-    

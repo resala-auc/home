@@ -145,7 +145,7 @@ background-color: #f9faff;
 }
 
 .introCol1{
-    padding-right: 0.5rem;
+    padding-right: .5rem;
 }
 
 
@@ -219,9 +219,7 @@ color: #222766;
     .recruitmentAnnouncement{
         text-align: center;
     }
-    .introCol1{
-        padding-right: 0;
-    }
+
 }
 
 
@@ -539,3 +537,4 @@ footer {
 }
 
 
+    

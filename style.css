@@ -136,6 +136,7 @@ header{
     background-color: #7D85BB;
 }
 
+
 @media (max-width: 992px) {
     .navbar {
         flex-direction: column;

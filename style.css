@@ -63,7 +63,7 @@ header{
 
 .navbar-links li {
     list-style: none;
-    position: relative; /* Add this to ensure dropdown works correctly */
+    position: relative; /* Ensure the dropdown works correctly */
 }
 
 .navbar-links li a {
@@ -112,11 +112,11 @@ header{
     display: none;
     position: absolute;
     background-color: #191C5C;
-    min-width: 160px; /* Adjust to fit content */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 100%; /* Position it below the dropdown button */
     left: 0;
+    min-width: max-content; /* Adjust width based on the content */
 }
 
 .dropdown-content a {

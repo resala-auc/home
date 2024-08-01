@@ -111,12 +111,17 @@ header{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #191C5C;
+    background-color: #284fb3;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     top: 100%; /* Position it below the dropdown button */
     left: 0;
     min-width: max-content; /* Adjust width based on the content */
+    width: 100%;
+}
+
+.dropdown-content.show {
+    display: block;
 }
 
 .dropdown-content a {
@@ -128,16 +133,10 @@ header{
 }
 
 .dropdown-content a:hover {
-    background-color: #7D85BB;
+    background-color: #4163b9;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
-}
 
-.dropdown:hover .dropbtn {
-    background-color: #7D85BB;
-}
 
 
 @media (max-width: 992px) {

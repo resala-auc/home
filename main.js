@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle clicks on navbar links
     navbarLinks.addEventListener('click', function(event) {
-        console.log('Navbar item clicked');
+        console.log("Welcome to Resala's developer, Eman!");
         
         // Check if the clicked item is not the "More" tab
         if (!moreBtn.contains(event.target)) {

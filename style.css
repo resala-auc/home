@@ -51,8 +51,25 @@ header{
     border: white solid 1.5px;
 }
 
+.navbar-item a {
+    text-decoration: none;
+    color: #333; /* Default text color */
+    padding: 10px 15px; /* Add some spacing */
+    border-radius: 5px; /* Soft edges for links */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.navbar-item a:hover {
+    background: radial-gradient(circle, #4163b9, #2c4a87); /* Radial background effect */
+    color: white; /* Change text color on hover */
+    box-shadow: 0 0 10px 5px rgba(65, 99, 185, 0.6); /* Add a glow effect */
+    border-radius: 50px; /* Fully rounded edges for hover effect */
+}
+
+
 .navbar-links {
     height: 100%;
+    
 }
 
 .navbar-links ul {

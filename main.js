@@ -3,60 +3,83 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbarLinks = document.getElementsByClassName('navbar-links')[0];
     const moreBtn = document.getElementById('moreBtn');
     const dropdownMenu = document.getElementById('dropdownMenu');
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
 
-    // Toggle the visibility of navbar links when the toggle button is clicked
-    toggleButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('Toggle button clicked');
-        navbarLinks.classList.toggle('active');
-    });
-
-    // Handle clicks on navbar links
-    navbarLinks.addEventListener('click', function(event) {
-        console.log("Welcome to Resala's developer, Eman!");
-        
-        // Check if the clicked item is not the "More" tab
-        if (!moreBtn.contains(event.target)) {
-            // Toggle the visibility of navbar links
-            toggleButton.click();
-        }
-    });
-
-    // Toggle dropdown menu visibility when "More" tab is clicked or touched
-    function toggleDropdown(e) {
-        e.preventDefault();
-        dropdownMenu.classList.toggle('show');
+    // Check for saved dark mode preference on load
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
     }
 
-    moreBtn.addEventListener('click', toggleDropdown);
-    moreBtn.addEventListener('touchstart', toggleDropdown);
-
-    // Show the dropdown menu when "More" tab is hovered over
-    moreBtn.addEventListener('mouseover', function() {
-        dropdownMenu.classList.add('show');
-    });
-
-    // Hide the dropdown menu when the mouse leaves "More" tab or the dropdown menu
-    moreBtn.addEventListener('mouseleave', function() {
-        setTimeout(function() {
-            if (!dropdownMenu.matches(':hover')) {
-                dropdownMenu.classList.remove('show');
+    // Navbar toggle for mobile
+    if (toggleButton) {
+        toggleButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (navbarLinks) {
+                navbarLinks.classList.toggle('active');
             }
-        }, 100); // Delay to allow cursor to move into the dropdown menu
-    });
+        });
+    }
 
-    dropdownMenu.addEventListener('mouseleave', function() {
-        dropdownMenu.classList.remove('show');
-    });
+    // Dark mode toggle - only responds to clicks on the toggle itself
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling up
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+    }
 
-    // Close the dropdown menu if clicking outside of it
+    // Handle clicks on navbar links
+    if (navbarLinks) {
+        navbarLinks.addEventListener('click', function(event) {
+            if (moreBtn && !moreBtn.contains(event.target)) {
+                if (toggleButton) {
+                    toggleButton.click();
+                }
+            }
+        });
+    }
+
+    // Dropdown menu functionality
+    function toggleDropdown(e) {
+        e.preventDefault();
+        if (dropdownMenu) {
+            dropdownMenu.classList.toggle('show');
+        }
+    }
+
+    if (moreBtn && dropdownMenu) {
+        moreBtn.addEventListener('click', toggleDropdown);
+        moreBtn.addEventListener('touchstart', toggleDropdown);
+
+        moreBtn.addEventListener('mouseover', function() {
+            dropdownMenu.classList.add('show');
+        });
+
+        moreBtn.addEventListener('mouseleave', function() {
+            setTimeout(function() {
+                if (!dropdownMenu.matches(':hover')) {
+                    dropdownMenu.classList.remove('show');
+                }
+            }, 100);
+        });
+
+        dropdownMenu.addEventListener('mouseleave', function() {
+            dropdownMenu.classList.remove('show');
+        });
+    }
+
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function(event) {
-        if (!moreBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        if (moreBtn && dropdownMenu && 
+            !moreBtn.contains(event.target) && 
+            !dropdownMenu.contains(event.target)) {
             dropdownMenu.classList.remove('show');
         }
 
-        // Hide the navbar links if clicking outside of it
-        if (!navbarLinks.contains(event.target) && !toggleButton.contains(event.target)) {
+        if (navbarLinks && toggleButton &&
+            !navbarLinks.contains(event.target) && 
+            !toggleButton.contains(event.target)) {
             navbarLinks.classList.remove('active');
         }
     });
